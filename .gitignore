@@ -1,0 +1,35 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+app/build/
+
+# Arquivos de agentes e temporarios locais
+.agent/
+
+# APKs e bundles gerados (nunca commitar)
+*.apk
+*.aab
+*.ap_
+
+# Keystores e chaves (SEGURANÇA - nunca commitar)
+*.jks
+*.keystore
+secrets.properties
+*.env
+
+# Google Services (API keys)
+google-services.json
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+*.hprof

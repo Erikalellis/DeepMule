@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">DeepMule</string>
+    <string name="library_title">Biblioteca</string>
+    <string name="scan_button">Escanear</string>
+    <string name="search_hint">Buscar jogos...</string>
+    <string name="toggle_view">Alternar Visualização</string>
+    <string name="filter_all">Todos</string>
+    <string name="empty_library_title">Sua biblioteca está vazia</string>
+    <string name="empty_library_desc">Escaneie uma pasta para encontrar seus jogos retrô</string>
+    <string name="is_scanning">Escaneando jogos...</string>
+
+    <string name="exit_emulation">Sair</string>
+    <string name="pause_emulation">Pausar</string>
+    <string name="resume_emulation">Retomar</string>
+    <string name="save_state">Salvar</string>
+    <string name="load_state">Carregar</string>
+    <string name="auto_save">Salvamento Automático</string>
+    <string name="settings_title">Configurações</string>
+    <string name="creations_title">Criações</string>
+    <string name="unknown_game">Desconhecido</string>
+    <string name="emulating_now">Emulando: %1$s</string>
+    <string name="virtual_controls_overlay">Sobreposição de controles virtuais</string>
+
+    <!-- Sistemas suportados -->
+    <string name="system_atari2600">Atari 2600</string>
+    <string name="system_atari7800">Atari 7800</string>
+    <string name="system_lynx">Atari Lynx</string>
+    <string name="system_gb">Game Boy</string>
+    <string name="system_gbc">Game Boy Color</string>
+    <string name="system_gba">Game Boy Advance</string>
+    <string name="system_nds">Nintendo DS</string>
+    <string name="system_3ds">Nintendo 3DS</string>
+    <string name="system_nes">Nintendo (NES)</string>
+    <string name="system_snes">Super Nintendo (SNES)</string>
+    <string name="system_n64">Nintendo 64</string>
+    <string name="system_sms">Sega Master System</string>
+    <string name="system_gg">Sega Game Gear</string>
+    <string name="system_genesis">Sega Genesis / Mega Drive</string>
+    <string name="system_segacd">Sega CD / Mega CD</string>
+    <string name="system_ps1">PlayStation (PSX)</string>
+    <string name="system_psp">PlayStation Portable (PSP)</string>
+    <string name="system_pce">PC Engine / TurboGrafx-16</string>
+    <string name="system_ngp">Neo Geo Pocket</string>
+    <string name="system_ngpc">Neo Geo Pocket Color</string>
+    <string name="system_ws">WonderSwan</string>
+    <string name="system_wsc">WonderSwan Color</string>
+    <string name="system_arcade">Arcade (FinalBurn Neo)</string>
+
+    <!-- BIOS -->
+    <string name="bios_required_title">BIOS necessária</string>
+    <string name="bios_required_desc">Este sistema exige o arquivo de BIOS: %1$s\n\nColoque-o na pasta DeepMule/bios/ do armazenamento interno.</string>
+    <string name="bios_missing_warning">⚠️ BIOS ausente para %1$s</string>
+</resources>

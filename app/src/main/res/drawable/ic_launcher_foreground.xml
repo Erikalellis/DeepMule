@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Mule Head Silhouette (White) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,48 L66,48 L66,65 L59,82 L49,82 L42,65 Z" />
+
+    <!-- Long Mule Ears (White) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,48 L34,22 L51,46 Z M66,48 L74,22 L57,46 Z" />
+
+    <!-- Tech Detail: Digital 'Eye' and Accents (Electric Cyan) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M46,55 h6 v4 h-6 z M56,55 h6 v4 h-6 z" />
+
+    <!-- Bottom Jaw Tech Accent -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M51,74 h6 v3 h-6 z" />
+
+</vector>
