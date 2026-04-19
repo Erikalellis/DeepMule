@@ -1,7 +1,7 @@
 package com.example.deepmule.emu
 
 import android.content.Context
-import android.net.Uri
+import androidx.core.net.toUri
 import com.example.deepmule.data.GameEntity
 import com.example.deepmule.data.SystemConfig
 import kotlinx.coroutines.Dispatchers
@@ -39,7 +39,7 @@ object LaunchResolver {
     }
 
     private fun stageRomIfNeeded(context: Context, game: GameEntity): File {
-        val uri = Uri.parse(game.path)
+        val uri = game.path.toUri()
         if (uri.scheme == "content") {
             val extension = game.path.substringAfterLast('.', "rom")
             val stagedFile = File(context.cacheDir, "rom_staging/${stableId(game.path)}.$extension")

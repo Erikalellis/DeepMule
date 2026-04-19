@@ -2,12 +2,12 @@
     <string name="app_name">DeepMule</string>
     <string name="library_title">Biblioteca</string>
     <string name="scan_button">Escanear</string>
-    <string name="search_hint">Buscar jogos...</string>
+    <string name="search_hint">Buscar jogos…</string>
     <string name="toggle_view">Alternar Visualização</string>
     <string name="filter_all">Todos</string>
     <string name="empty_library_title">Sua biblioteca está vazia</string>
     <string name="empty_library_desc">Escaneie uma pasta para encontrar seus jogos retrô</string>
-    <string name="is_scanning">Escaneando jogos...</string>
+    <string name="is_scanning">Escaneando jogos…</string>
 
     <string name="exit_emulation">Sair</string>
     <string name="pause_emulation">Pausar</string>

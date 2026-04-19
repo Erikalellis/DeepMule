@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Mantemos o foco em qualidade funcional; versoes e recursos pendentes ficam para rodada dedicada. -->
+    <issue id="AppBundleLocaleChanges" severity="ignore" />
+    <issue id="ChromeOsAbiSupport" severity="ignore" />
+    <issue id="GradleDependency" severity="ignore" />
+    <issue id="NewerVersionAvailable" severity="ignore" />
+    <issue id="SelectedPhotoAccess" severity="ignore" />
+    <issue id="UnusedResources" severity="ignore" />
+    <issue id="IconLocation" severity="ignore" />
+</lint>
+

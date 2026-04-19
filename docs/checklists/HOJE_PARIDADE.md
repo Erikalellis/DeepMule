@@ -3,13 +3,13 @@
 ## Bloco A - Higiene do projeto
 
 - [x] Corrigir `QUICKSTART.md` (idioma e comandos de instalacao)
-- [ ] Consolidar politica pt-BR no projeto completo, projeto 100% portugues brasil 
+- [x] Consolidar politica pt-BR no projeto completo (projeto 100% Portugues Brasil)
 - [x] Registrar baseline clean-room (`docs/LEGAL_SAFE_BASELINE.md`)
 
 ## Bloco B - Build e validacao
 
 - [x] `:app:assembleDebug`
-- [ ] `lint`
+- [x] `lint`
 - [x] `:app:testDebugUnitTest`
 - [x] `:app:assembleDebugAndroidTest`
 

@@ -13,7 +13,7 @@ Estado verificado em 2026-04-19.
 
 - Idioma principal e prioritario: `Portugues (Brasil)` (`pt-BR`)
 - Todas as telas, textos e revisoes devem considerar `pt-BR` em primeira instancia
-- `Portugues (Portugal)` (`pt-PT`) nao e idioma foco do app
+- Demais idiomas sao secundarios e devem sempre derivar do padrao `pt-BR`
 
 ## Instalar no celular/tablet (debug)
 

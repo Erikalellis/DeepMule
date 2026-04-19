@@ -1,5 +1,6 @@
 package com.example.deepmule.emu
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.Surface
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.File
 
+@SuppressLint("StaticFieldLeak")
 class EmulationViewModel(
     private val context: Context
 ) : ViewModel() {

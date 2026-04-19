@@ -3,7 +3,6 @@ package com.example.deepmule
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import android.os.LocaleList
 import com.example.deepmule.analytics.DeepMuleReporter
 import com.example.deepmule.data.GameDatabase
@@ -39,12 +38,8 @@ private fun Context.withPtBrLocale(): Context {
     Locale.setDefault(locale)
 
     val config = Configuration(resources.configuration)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        config.setLocale(locale)
-        config.setLocales(LocaleList(locale))
-    } else {
-        config.setLocale(locale)
-    }
+    config.setLocale(locale)
+    config.setLocales(LocaleList(locale))
 
     return createConfigurationContext(config)
 }

@@ -108,10 +108,10 @@ cd C:\Users\robso\AndroidStudioProjects\DeepMule
 adb install -r app\build\outputs\apk\debug\app-debug.apk
 ```
 
-### Validar Localization
+### Validar localizacao
 
 1. **Abrir o app** - Todos os textos em português
-2. **Mudar idioma do device** para English/Español/Francês
+2. **Mudar idioma do dispositivo** para outro idioma
 3. **Reiniciar o app** - Continua em português (força aplicada)
 
 ### Verificar Locale via ADB
