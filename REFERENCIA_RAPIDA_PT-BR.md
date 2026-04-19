@@ -67,16 +67,12 @@ adb install -r app\build\outputs\apk\debug\app-debug.apk
 
 ---
 
-## 📝 Adicionando Novo Idioma (Futuro)
+## 📝 Política de Idioma (Atual)
 
-1. Criar pasta: `app/src/main/res/values-XX/`
-   - Exemplo: `values-es-rES/` para espanhol
-   
-2. Copiar estrutura de `values/strings.xml`
-
-3. Traduzir mantendo mesmas chaves
-
-4. Build/test normalmente (pt-BR continua primário)
+1. O app e exclusivo em `pt-BR` nesta fase
+2. Nao criar pastas `values-XX/` por enquanto
+3. Novos textos devem seguir o padrao de escrita pt-BR
+4. Build/test normalmente com foco em consistencia de linguagem
 
 ---
 
@@ -111,10 +107,10 @@ A: Sim, 100%. Abra e veja.
 A: O app continua em português (força aplicada em `DeepMuleApplication`).
 
 **P: Como adicionar novo idioma?**  
-A: Criar `values-XX/strings.xml`, traduzir, build normalmente.
+A: No escopo atual, nao adicionamos novos idiomas. O app permanece 100% pt-BR.
 
 **P: Posso publicar na Play Store assim?**  
-A: Sim, tudo validado. Se quiser múltiplos idiomas, adicione `values-XX/` e republique.
+A: Sim, com idioma unico em pt-BR, conforme a politica atual do projeto.
 
 ---
 

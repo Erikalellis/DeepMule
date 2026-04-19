@@ -134,14 +134,13 @@ REGRA OBRIGATÓRIA:
 ├─ Aplicado em Runtime: sim (force via DeepMuleApplication)
 ├─ Strings Base: values/strings.xml em pt-BR
 ├─ Fallback: values-pt-rBR/strings.xml
-└─ Novos Idiomas: Sempre derivados de pt-BR
+└─ Escopo atual: Idioma unico e exclusivo em Portugues (Brasil)
 ```
 
-**Se adicionar novo idioma no futuro:**
-1. Criar `app/src/main/res/values-XX/strings.xml`
-2. Copiar estrutura de `values/strings.xml`
-3. Traduzir mantendo mesmas chaves
-4. NÃO remover `values/strings.xml` (é a base)
+**Diretriz atual:**
+1. Nao adicionar novos pacotes `values-XX/` nesta fase
+2. Manter todo texto do app em `pt-BR`
+3. Qualquer novo texto deve entrar primeiro em `values/strings.xml`
 
 ---
 
@@ -151,7 +150,7 @@ REGRA OBRIGATÓRIA:
 ✅ **Force Locale:** Mesmo que o usuário mude idioma do device, app volta para pt-BR  
 ✅ **Performance:** Localização aplicada uma única vez na inicialização  
 ✅ **Manutenção:** Todas as strings centralizadas em `strings.xml`  
-✅ **Escalabilidade:** Fácil adicionar novos idiomas seguindo o padrão  
+✅ **Consistencia:** Idioma unico em pt-BR em toda a experiencia  
 ✅ **Produção:** Pronto para publicar em Play Store  
 
 ---
@@ -160,7 +159,7 @@ REGRA OBRIGATÓRIA:
 
 1. **Testar em múltiplos devices/emuladores** com idiomas diferentes
 2. **Adicionar ícones/imagens com texto** em pt-BR (se houver)
-3. **Expandir para novos idiomas** (es-ES, fr-FR) mantendo pt-BR como base
+3. **Refinar termos pt-BR** em telas, mensagens e documentacao
 4. **Configurar Firebase** com tracking de idioma/locale
 5. **Publicar em Play Store** com loja em português
 
