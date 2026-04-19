@@ -17,6 +17,7 @@ data class SystemConfig(
     val name: String,
     val extensions: List<String>,
     val coreName: String,
+    val coreAlternatives: List<String> = emptyList(),
     val biosRequired: Boolean = false,
     val biosFileName: String? = null
 )
@@ -70,7 +71,8 @@ object SupportedSystems {
             id = "nds",
             name = "Nintendo DS (NDS)",
             extensions = listOf("nds"),
-            coreName = "melonds"
+            coreName = "melonds",
+            coreAlternatives = listOf("desmume")
         ),
         SystemConfig(
             id = "3ds",
@@ -96,7 +98,8 @@ object SupportedSystems {
             id = "n64",
             name = "Nintendo 64 (N64)",
             extensions = listOf("n64", "z64", "v64"),
-            coreName = "mupen64plus_next"
+            coreName = "mupen64plus_next",
+            coreAlternatives = listOf("mupen64plus")
         ),
 
         // ─── Sega ─────────────────────────────────────────────────────────────
@@ -133,6 +136,7 @@ object SupportedSystems {
             name = "PlayStation (PSX)",
             extensions = listOf("cue", "iso", "pbp", "chd"),
             coreName = "pcsx_rearmed",
+            coreAlternatives = listOf("pcsx-rearmed"),
             biosRequired = true,
             biosFileName = "scph1001.bin"
         ),
@@ -170,13 +174,15 @@ object SupportedSystems {
             id = "ws",
             name = "WonderSwan (WS)",
             extensions = listOf("ws"),
-            coreName = "beetle_wswan"
+            coreName = "beetle_wswan",
+            coreAlternatives = listOf("beetle_cygne")
         ),
         SystemConfig(
             id = "wsc",
             name = "WonderSwan Color (WSC)",
             extensions = listOf("wsc"),
-            coreName = "beetle_wswan"
+            coreName = "beetle_wswan",
+            coreAlternatives = listOf("beetle_cygne")
         ),
 
         // ─── Arcade ───────────────────────────────────────────────────────────

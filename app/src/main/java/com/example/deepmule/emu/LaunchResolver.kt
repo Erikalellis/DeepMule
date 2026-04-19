@@ -25,9 +25,8 @@ object LaunchResolver {
         system: SystemConfig
     ): Result<LaunchArtifacts> = withContext(Dispatchers.IO) {
         runCatching {
-            val coreFile = File(context.filesDir, "cores/${system.coreName}.so")
-            if (!coreFile.exists()) {
-                error("Core ausente: ${coreFile.absolutePath}")
+            val coreFile = CoreProvisioning.ensureCoreAvailable(context, system).getOrElse {
+                throw it
             }
 
             val romFile = stageRomIfNeeded(context, game)

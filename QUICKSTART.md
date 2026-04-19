@@ -11,9 +11,9 @@ Estado verificado em 2026-04-19.
 
 ## Padrao de idioma (obrigatorio)
 
-- Idioma principal e prioritario: `Portugues (Brasil)` (`pt-BR`)
+- Idioma unico e exclusivo do app: `Portugues (Brasil)` (`pt-BR`)
 - Todas as telas, textos e revisoes devem considerar `pt-BR` em primeira instancia
-- Demais idiomas sao secundarios e devem sempre derivar do padrao `pt-BR`
+- Nao adicionar novos pacotes `values-XX/` nesta fase
 
 ## Instalar no celular/tablet (debug)
 
@@ -57,3 +57,36 @@ Set-Location "C:\Users\robso\AndroidStudioProjects\DeepMule"
 - `app/src/main/java/com/example/deepmule/MainActivity.kt`
 - `app/build/reports/lint-results-debug.html`
 
+## Prerequisitos para emulacao real (prioritarios)
+
+- Provisionar cores em `filesDir/cores/`: `fceumm.so`, `snes9x.so`, `mgba.so`, `pcsx_rearmed.so`, `ppsspp.so`
+- Para PSX, provisionar BIOS em `filesDir/bios/scph1001.bin`
+- Executar matriz pratica em `docs/checklists/MATRIZ_VALIDACAO_PRIORITARIOS.md`
+
+### Provisionar BIOS obrigatorias no app (debug)
+
+```powershell
+Set-Location "C:\Users\robso\AndroidStudioProjects\DeepMule"
+.\Provision-DeepMuleBios.ps1
+```
+
+### Provisionar cores (.so) a partir de `cores-pack` (debug)
+
+```powershell
+Set-Location "C:\Users\robso\AndroidStudioProjects\DeepMule"
+.\Provision-DeepMuleCores.ps1 -CorePackDir "cores-pack"
+```
+
+### Provisionar cores (.so) diretamente da pasta RetroArch (debug)
+
+```powershell
+Set-Location "C:\Users\robso\AndroidStudioProjects\DeepMule"
+.\Provision-DeepMuleCores.ps1 -RetroArchDir "C:\Users\robso\Downloads\Nova pasta\RetroArch"
+```
+
+### Simular e validar o que sera copiado (sem enviar para o aparelho)
+
+```powershell
+Set-Location "C:\Users\robso\AndroidStudioProjects\DeepMule"
+.\Provision-DeepMuleCores.ps1 -RetroArchDir "C:\Users\robso\Downloads\Nova pasta\RetroArch" -DryRun
+```

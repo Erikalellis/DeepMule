@@ -27,5 +27,6 @@
 - [x] Integrar save state real local
 - [x] Integrar pipeline de inicializacao `loadCore -> loadGame`
 - [x] Integrar superficie real (`SurfaceView`) na tela de emulacao
-- [ ] Rodar matriz de validacao por sistema
+- [x] Criar matriz prioritaria (`docs/checklists/MATRIZ_VALIDACAO_PRIORITARIOS.md`)
+- [ ] Rodar matriz de validacao por sistema (`docs/checklists/MATRIZ_VALIDACAO_PRIORITARIOS.md`)
 

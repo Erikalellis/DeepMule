@@ -60,6 +60,11 @@ class EmulationViewModel(
                 return@launch
             }
 
+            BiosValidator.validate(context, system).getOrElse {
+                _syncStatus.value = it.message ?: "Falha na validacao de BIOS"
+                return@launch
+            }
+
             val launchArtifacts = LaunchResolver.prepare(context, game, system).getOrElse {
                 _syncStatus.value = it.message ?: "Falha ao preparar jogo"
                 return@launch
