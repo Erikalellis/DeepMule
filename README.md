@@ -3,6 +3,7 @@
 > Emulador retrô moderno para Android, 100% em Português Brasil (pt-BR)
 
 [![Build](https://github.com/Erikalellis/DeepMule/actions/workflows/build.yml/badge.svg)](https://github.com/Erikalellis/DeepMule/actions/workflows/build.yml)
+[![Docs Site](https://github.com/Erikalellis/DeepMule/actions/workflows/pages.yml/badge.svg)](https://github.com/Erikalellis/DeepMule/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/Erikalellis/DeepMule)](https://github.com/Erikalellis/DeepMule/releases)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-green)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.x-blue)](https://kotlinlang.org)
@@ -133,6 +134,15 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ---
 
+## 🌐 Site da Documentação
+
+- Site (GitHub Pages): `https://erikalellis.github.io/DeepMule/`
+- Workflow de deploy: [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
+
+> 👉 **Abrir documentação agora:** [https://erikalellis.github.io/DeepMule/](https://erikalellis.github.io/DeepMule/)
+
+---
+
 ## 🛠️ Tecnologias
 
 ```
@@ -196,6 +206,7 @@ O DeepMule usa uma arquitetura **plugável** para saves:
 |---------|---------|-----------|
 | `build.yml` | Push/PR | Build, testes, lint, APK Debug |
 | `release.yml` | Tag `v*.*.*` | APK Release + GitHub Release |
+| `pages.yml` | Push na branch de docs + manual | Publica `docs/` no GitHub Pages |
 | `analytics.yml` | Toda segunda | Relatório semanal de métricas |
 
 ---
