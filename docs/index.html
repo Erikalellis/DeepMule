@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DeepMule Docs</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f0f1a;
+      --bg2: #1a1033;
+      --card: #201b38;
+      --text: #f2f0ff;
+      --muted: #c7c3df;
+      --link: #a6a0ff;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    a.card {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #3f3a5f;
+    }
+    a.card:hover {
+      border-color: var(--link);
+    }
+    .name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .path {
+      color: var(--muted);
+      font-size: 13px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>DeepMule Docs</h1>
+    <p>Documentacao tecnica e checklists de validacao do projeto DeepMule.</p>
+
+    <section class="grid">
+      <a class="card" href="SPRINT_PARIDADE_PLUS.md">
+        <div class="name">Sprint Paridade Plus</div>
+        <div class="path">docs/SPRINT_PARIDADE_PLUS.md</div>
+      </a>
+      <a class="card" href="PARIDADE_FUNCIONAL_LEMUROID.md">
+        <div class="name">Paridade Funcional (Lemuroid)</div>
+        <div class="path">docs/PARIDADE_FUNCIONAL_LEMUROID.md</div>
+      </a>
+      <a class="card" href="LEGAL_SAFE_BASELINE.md">
+        <div class="name">Legal Safe Baseline</div>
+        <div class="path">docs/LEGAL_SAFE_BASELINE.md</div>
+      </a>
+      <a class="card" href="EMULATOR_BENCHMARK_BASELINE.md">
+        <div class="name">Emulator Benchmark Baseline</div>
+        <div class="path">docs/EMULATOR_BENCHMARK_BASELINE.md</div>
+      </a>
+      <a class="card" href="DESIGN_BENCHMARK_CLEANROOM.md">
+        <div class="name">Design Benchmark Cleanroom</div>
+        <div class="path">docs/DESIGN_BENCHMARK_CLEANROOM.md</div>
+      </a>
+      <a class="card" href="checklists/CHECKLIST_TESTE_FISICO_FINAL.md">
+        <div class="name">Checklist Teste Fisico Final</div>
+        <div class="path">docs/checklists/CHECKLIST_TESTE_FISICO_FINAL.md</div>
+      </a>
+      <a class="card" href="checklists/CHECKLIST_QA_VISUAL_NAVEGACAO_DEVICE.md">
+        <div class="name">Checklist QA Visual + Navegacao</div>
+        <div class="path">docs/checklists/CHECKLIST_QA_VISUAL_NAVEGACAO_DEVICE.md</div>
+      </a>
+      <a class="card" href="checklists/HOJE_PARIDADE.md">
+        <div class="name">Hoje Paridade</div>
+        <div class="path">docs/checklists/HOJE_PARIDADE.md</div>
+      </a>
+      <a class="card" href="checklists/MATRIZ_VALIDACAO_PRIORITARIOS.md">
+        <div class="name">Matriz Validacao Prioritarios</div>
+        <div class="path">docs/checklists/MATRIZ_VALIDACAO_PRIORITARIOS.md</div>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
+
