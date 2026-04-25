@@ -40,6 +40,29 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 12px;
     }
+    .quick {
+      margin: 0 0 18px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #4b4580;
+      background: #262048;
+    }
+    .quick strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .quick a {
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #5c49ff;
+      font-weight: 700;
+    }
+    .quick a:hover {
+      background: #6f5eff;
+    }
     a.card {
       display: block;
       text-decoration: none;
@@ -67,6 +90,11 @@
   <main class="wrap">
     <h1>DeepMule Docs</h1>
     <p>Documentacao tecnica e checklists de validacao do projeto DeepMule.</p>
+
+    <div class="quick">
+      <strong>Acesso rapido</strong>
+      <a href="checklists/CHECKLIST_QA_VISUAL_NAVEGACAO_DEVICE.md">Abrir checklist QA visual + navegacao</a>
+    </div>
 
     <section class="grid">
       <a class="card" href="SPRINT_PARIDADE_PLUS.md">
