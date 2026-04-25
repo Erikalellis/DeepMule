@@ -206,7 +206,7 @@ O DeepMule usa uma arquitetura **plugável** para saves:
 |---------|---------|-----------|
 | `build.yml` | Push/PR | Build, testes, lint, APK Debug |
 | `release.yml` | Tag `v*.*.*` | APK Release + GitHub Release |
-| `pages.yml` | Push na branch de docs + manual | Publica `docs/` no GitHub Pages |
+| `pages.yml` | Push em `main/master/develop` + manual | Publica `docs/` no GitHub Pages |
 | `analytics.yml` | Toda segunda | Relatório semanal de métricas |
 
 ---
