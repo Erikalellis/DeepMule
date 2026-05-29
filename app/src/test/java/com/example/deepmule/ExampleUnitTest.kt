@@ -45,10 +45,10 @@ class ExampleUnitTest {
     fun getByExtension_gbc() = assertSystem("gbc", "gbc", "gambatte")
 
     @Test
-    fun getByExtension_n64() = assertSystem("z64", "n64", "mupen64plus_next")
+    fun getByExtension_n64() = assertSystem("z64", "n64", "mupen64plus_next_gles3")
 
     @Test
-    fun getByExtension_v64() = assertSystem("v64", "n64", "mupen64plus_next")
+    fun getByExtension_v64() = assertSystem("v64", "n64", "mupen64plus_next_gles3")
 
     @Test
     fun getByExtension_nds() = assertSystem("nds", "nds", "melonds")
@@ -78,7 +78,7 @@ class ExampleUnitTest {
     fun getByExtension_psp_cso() = assertSystem("cso", "psp", "ppsspp")
 
     @Test
-    fun getByExtension_pce() = assertSystem("pce", "pce", "beetle_pce_fast")
+    fun getByExtension_pce() = assertSystem("pce", "pce", "mednafen_pce_fast")
 
     @Test
     fun getByExtension_ngp() = assertSystem("ngp", "ngp", "mednafen_ngp")
@@ -87,10 +87,10 @@ class ExampleUnitTest {
     fun getByExtension_ngpc() = assertSystem("ngpc", "ngpc", "mednafen_ngp")
 
     @Test
-    fun getByExtension_ws() = assertSystem("ws", "ws", "beetle_wswan")
+    fun getByExtension_ws() = assertSystem("ws", "ws", "mednafen_wswan")
 
     @Test
-    fun getByExtension_wsc() = assertSystem("wsc", "wsc", "beetle_wswan")
+    fun getByExtension_wsc() = assertSystem("wsc", "wsc", "mednafen_wswan")
 
     @Test
     fun getByExtension_arcade_zip() = assertSystem("zip", "arcade", "fbneo")
@@ -108,6 +108,36 @@ class ExampleUnitTest {
     @Test
     fun getByExtension_returnsNull_forUnknown() {
         assertNull(SupportedSystems.getByExtension("xyz"))
+    }
+
+    @Test
+    fun getByPathHint_workspaceFolder_resolvesGenesisZip() {
+        val system = SupportedSystems.getByPathHint(
+            "C:/Users/robso/AndroidStudioProjects/DeepMule/Roms/roms Sega Mega Drive (Sega Genesis)/Sonic.zip",
+            "zip"
+        )
+        assertNotNull(system)
+        assertEquals("genesis", system?.id)
+    }
+
+    @Test
+    fun getByPathHint_workspaceFolder_resolvesNeoGeoAsArcade() {
+        val system = SupportedSystems.getByPathHint(
+            "C:/Users/robso/AndroidStudioProjects/DeepMule/Roms/roms neo geo/kof95.zip",
+            "zip"
+        )
+        assertNotNull(system)
+        assertEquals("arcade", system?.id)
+    }
+
+    @Test
+    fun getByPathHint_folderWinsForAmbiguousBin() {
+        val system = SupportedSystems.getByPathHint(
+            "/data/user/0/com.example.deepmule/files/roms/genesis/Sonic.bin",
+            "bin"
+        )
+        assertNotNull(system)
+        assertEquals("genesis", system?.id)
     }
 
     // ─── getById ──────────────────────────────────────────────────────────────

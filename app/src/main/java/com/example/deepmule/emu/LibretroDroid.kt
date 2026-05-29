@@ -16,6 +16,12 @@ object LibretroDroid {
 
     fun isNativeReady(): Boolean = nativeLoaded
 
+    fun setDirectories(systemPath: String, savePath: String) {
+        if (nativeLoaded) {
+            nativeSetDirectories(systemPath, savePath)
+        }
+    }
+
     fun loadCore(corePath: String): Boolean =
         nativeLoaded && nativeLoadCore(corePath)
 
@@ -43,6 +49,18 @@ object LibretroDroid {
     fun loadState(slot: Int, inputPath: String): Boolean =
         nativeLoaded && nativeLoadState(slot, inputPath)
 
+    fun setInputState(buttonId: Int, pressed: Boolean) {
+        if (nativeLoaded) {
+            nativeSetInputState(buttonId, pressed)
+        }
+    }
+
+    /** Drains buffered audio samples into [buffer].
+     *  Returns the number of int16 samples actually written (stereo interleaved). */
+    fun drainAudio(buffer: ShortArray, maxSamples: Int): Int =
+        if (nativeLoaded) nativeDrainAudio(buffer, maxSamples) else 0
+
+    private external fun nativeSetDirectories(systemPath: String, savePath: String)
     private external fun nativeLoadCore(corePath: String): Boolean
     private external fun nativeLoadGame(gamePath: String): Boolean
     private external fun nativeAttachSurface(surface: Surface): Boolean
@@ -50,4 +68,6 @@ object LibretroDroid {
     private external fun nativeStep()
     private external fun nativeSaveState(slot: Int, outputPath: String): Boolean
     private external fun nativeLoadState(slot: Int, inputPath: String): Boolean
+    private external fun nativeSetInputState(buttonId: Int, pressed: Boolean)
+    private external fun nativeDrainAudio(buffer: ShortArray, maxSamples: Int): Int
 }

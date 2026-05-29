@@ -2,42 +2,40 @@ package com.example.deepmule.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Vibrant Energetic Palette
-val PrimaryLight = Color(0xFF006971)
+// Neon purple theme inspired by the reference layout.
+val DeepBackground = Color(0xFF070915)
+val InterfaceGrey = Color(0xFF101426)
+val MuleGold = Color(0xFF8E56FF)
+val NeonPulse = Color(0xFFB96DFF)
+val StatusGreen = Color(0xFF37D67A)
+val StatusRed = Color(0xFFFF4D6D)
+
+val PrimaryLight = MuleGold
 val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFF88F3FF)
-val OnPrimaryContainerLight = Color(0xFF001F23)
+val PrimaryContainerLight = Color(0xFFE3D5FF)
+val OnPrimaryContainerLight = Color(0xFF2A1855)
 
-val SecondaryLight = Color(0xFF4A6366)
+val SecondaryLight = Color(0xFF5F5B71)
 val OnSecondaryLight = Color(0xFFFFFFFF)
-val SecondaryContainerLight = Color(0xFFCDE7EB)
-val OnSecondaryContainerLight = Color(0xFF061F22)
+val SecondaryContainerLight = Color(0xFFE5E0F3)
+val OnSecondaryContainerLight = Color(0xFF201D2F)
 
-val TertiaryLight = Color(0xFF515C7E)
+val TertiaryLight = NeonPulse
 val OnTertiaryLight = Color(0xFFFFFFFF)
-val TertiaryContainerLight = Color(0xFFD9E2FF)
-val OnTertiaryContainerLight = Color(0xFF0D1937)
+val TertiaryContainerLight = Color(0xFFF0DDFF)
+val OnTertiaryContainerLight = Color(0xFF32154A)
 
-val PrimaryDark = Color(0xFF4DD9E6)
-val OnPrimaryDark = Color(0xFF00363B)
-val PrimaryContainerDark = Color(0xFF004F55)
-val OnPrimaryContainerDark = Color(0xFF88F3FF)
+val PrimaryDark = MuleGold
+val OnPrimaryDark = Color(0xFFF8F5FF)
+val PrimaryContainerDark = Color(0xFF2B1B54)
+val OnPrimaryContainerDark = Color(0xFFE8DAFF)
 
-val SecondaryDark = Color(0xFFB1CBD0)
-val OnSecondaryDark = Color(0xFF1C3437)
-val SecondaryContainerDark = Color(0xFF334B4E)
-val OnSecondaryContainerDark = Color(0xFFCDE7EB)
+val SecondaryDark = Color(0xFF1B2138)
+val OnSecondaryDark = Color(0xFFECEBFF)
+val SecondaryContainerDark = Color(0xFF171D31)
+val OnSecondaryContainerDark = Color(0xFFC6C9E8)
 
-val TertiaryDark = Color(0xFFB9C4EA)
-val OnTertiaryDark = Color(0xFF232E4D)
-val TertiaryContainerDark = Color(0xFF3A4465)
-val OnTertiaryContainerDark = Color(0xFFD9E2FF)
-
-// Legacy / Default placeholders
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val TertiaryDark = NeonPulse
+val OnTertiaryDark = Color(0xFFF8EFFF)
+val TertiaryContainerDark = Color(0xFF3B1C5F)
+val OnTertiaryContainerDark = Color(0xFFF1DCFF)

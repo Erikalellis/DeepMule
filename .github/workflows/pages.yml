@@ -3,6 +3,9 @@ name: Docs Site (GitHub Pages)
 on:
   push:
     branches:
+      - main
+      - master
+      - develop
       - fix/git-root-clean
     paths:
       - "docs/**"

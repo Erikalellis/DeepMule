@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.FolderOpen
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -150,21 +151,49 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(140.dp),
-                contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 96.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(games, key = { it.id }) { game ->
-                    GameCard(
-                        game = game,
-                        onClick = {
-                            viewModel.onGameOpened(game)
-                            onGameSelected(game)
-                        },
-                        onToggleFavorite = { favorite -> viewModel.setFavorite(game, favorite) }
-                    )
+            when {
+                state.isLoading -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(24.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(color = Color(0xFFA6A0FF))
+                    }
+                }
+
+                games.isEmpty() -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(24.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "Nenhuma ROM encontrada. Adicione jogos locais para continuar.",
+                            color = Color(0xFFBAB7CE),
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
+
+                else -> LazyVerticalGrid(
+                    columns = GridCells.Adaptive(140.dp),
+                    contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 96.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(games, key = { it.id }) { game ->
+                        GameCard(
+                            game = game,
+                            onClick = {
+                                viewModel.onGameOpened(game)
+                                onGameSelected(game)
+                            },
+                            onToggleFavorite = { favorite -> viewModel.setFavorite(game, favorite) }
+                        )
+                    }
                 }
             }
         }

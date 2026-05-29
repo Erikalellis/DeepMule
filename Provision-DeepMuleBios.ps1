@@ -1,7 +1,8 @@
 param(
     [string]$ProjectRoot = "C:\Users\robso\AndroidStudioProjects\DeepMule",
     [string]$PackageName = "com.example.deepmule",
-    [string]$AdbPath = "F:\Android\SDK\platform-tools\adb.exe"
+    [string]$AdbPath = "F:\Android\SDK\platform-tools\adb.exe",
+    [string]$DeviceSerial = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -36,24 +37,33 @@ if (-not $deviceList) {
 Write-Host "Dispositivo(s) conectado(s):"
 $deviceList | ForEach-Object { Write-Host " - $($_.Line)" }
 
+# Build adb base args with optional -s serial
+$adbBase = @()
+if (-not [string]::IsNullOrWhiteSpace($DeviceSerial)) {
+    $adbBase = @("-s", $DeviceSerial)
+    Write-Host "Usando dispositivo: $DeviceSerial"
+}
+
 Write-Host "Criando pasta de BIOS interna do app..."
-& $AdbPath shell "run-as $PackageName mkdir -p files/bios"
+& $AdbPath @adbBase shell "run-as $PackageName mkdir -p files/bios"
 
 foreach ($bios in $requiredBios) {
     $sourceFile = Join-Path $biosPack $bios
     $tmpPath = "/data/local/tmp/$bios"
 
     Write-Host "Enviando $bios para temporario..."
-    & $AdbPath push "$sourceFile" "$tmpPath" | Out-Null
+    $prev = $ErrorActionPreference; $ErrorActionPreference = "SilentlyContinue"
+    $null = & $AdbPath @adbBase push "$sourceFile" "$tmpPath" 2>&1
+    $ErrorActionPreference = $prev
 
     Write-Host "Copiando $bios para files/bios via run-as..."
-    & $AdbPath shell "run-as $PackageName cp $tmpPath files/bios/$bios"
-    & $AdbPath shell "run-as $PackageName chmod 600 files/bios/$bios"
-    & $AdbPath shell "rm -f $tmpPath"
+    & $AdbPath @adbBase shell "run-as $PackageName cp $tmpPath files/bios/$bios"
+    & $AdbPath @adbBase shell "run-as $PackageName chmod 600 files/bios/$bios"
+    & $AdbPath @adbBase shell "rm -f $tmpPath"
 }
 
 Write-Host "Verificando BIOS provisionadas no app..."
-& $AdbPath shell "run-as $PackageName ls -l files/bios"
+& $AdbPath @adbBase shell "run-as $PackageName ls -l files/bios"
 
 Write-Host "Provisionamento concluido com sucesso."
 

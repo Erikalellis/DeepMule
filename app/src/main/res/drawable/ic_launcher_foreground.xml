@@ -4,24 +4,24 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Mule Head Silhouette (White) -->
+    <!-- Gamer pad shell -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M42,48 L66,48 L66,65 L59,82 L49,82 L42,65 Z" />
+        android:fillColor="#C5A059"
+        android:pathData="M24,58 C24,46 34,36 46,36 H62 C74,36 84,46 84,58 C84,70 75,82 64,82 H44 C33,82 24,70 24,58 Z" />
 
-    <!-- Long Mule Ears (White) -->
+    <!-- D-pad -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M42,48 L34,22 L51,46 Z M66,48 L74,22 L57,46 Z" />
+        android:fillColor="#050508"
+        android:pathData="M40,54h8v-8h6v8h8v6h-8v8h-6v-8h-8z" />
 
-    <!-- Tech Detail: Digital 'Eye' and Accents (Electric Cyan) -->
+    <!-- Action buttons -->
     <path
-        android:fillColor="#00E5FF"
-        android:pathData="M46,55 h6 v4 h-6 z M56,55 h6 v4 h-6 z" />
+        android:fillColor="#CF66FF"
+        android:pathData="M66,54a4,4 0 1,1 8,0a4,4 0 1,1 -8,0z M58,62a4,4 0 1,1 8,0a4,4 0 1,1 -8,0z" />
 
-    <!-- Bottom Jaw Tech Accent -->
+    <!-- Center pulse -->
     <path
-        android:fillColor="#00E5FF"
-        android:pathData="M51,74 h6 v3 h-6 z" />
+        android:fillColor="#CF66FF"
+        android:pathData="M50,59h8v5h-8z" />
 
 </vector>

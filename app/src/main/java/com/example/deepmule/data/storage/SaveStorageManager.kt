@@ -18,6 +18,8 @@ class SaveStorageManager(private val context: Context) {
 
     companion object {
         private val KEY_BACKEND = stringPreferencesKey("selected_backend")
+        private val KEY_REST_BASE_URL = stringPreferencesKey("rest_base_url")
+        private val KEY_REST_AUTH_TOKEN = stringPreferencesKey("rest_auth_token")
         // Valores simples para evitar dependência de JSON na leitura
         private const val BACKEND_LOCAL = "local"
         private const val BACKEND_REST = "rest"
@@ -29,11 +31,24 @@ class SaveStorageManager(private val context: Context) {
      * Quando a API estiver pronta, basta salvar "rest" no DataStore.
      */
     suspend fun getProvider(): SaveProvider {
-        val backend = dataStore.data.first()[KEY_BACKEND] ?: BACKEND_LOCAL
+        val prefs = dataStore.data.first()
+        val backend = prefs[KEY_BACKEND] ?: BACKEND_LOCAL
         return when (backend) {
             BACKEND_REST -> {
-                // TODO: Carregar credenciais e criar RestSaveProvider quando API estiver pronta
-                LocalSaveProvider(context)
+                val baseUrl = prefs[KEY_REST_BASE_URL]?.trim().orEmpty()
+                val authToken = prefs[KEY_REST_AUTH_TOKEN]?.trim().orEmpty()
+                if (baseUrl.isBlank() || authToken.isBlank()) {
+                    LocalSaveProvider(context)
+                } else {
+                    runCatching {
+                        SaveProviderFactory.createProvider(
+                            SaveBackendConfig.RestAPI(baseUrl = baseUrl, authToken = authToken),
+                            context
+                        )
+                    }.getOrElse {
+                        LocalSaveProvider(context)
+                    }
+                }
             }
             else -> LocalSaveProvider(context)
         }
@@ -54,8 +69,8 @@ class SaveStorageManager(private val context: Context) {
     suspend fun useRestApi(baseUrl: String, authToken: String) {
         dataStore.edit { prefs ->
             prefs[KEY_BACKEND] = BACKEND_REST
-            prefs[stringPreferencesKey("rest_base_url")] = baseUrl
-            prefs[stringPreferencesKey("rest_auth_token")] = authToken
+            prefs[KEY_REST_BASE_URL] = baseUrl
+            prefs[KEY_REST_AUTH_TOKEN] = authToken
         }
     }
 }

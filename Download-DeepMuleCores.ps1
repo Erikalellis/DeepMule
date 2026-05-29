@@ -9,7 +9,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Lista consolidada usada pelo DeepMule (sistemas + aliases).
+# Lista consolidada usada pelo DeepMule (sem duplicados).
 $requiredCores = @(
     "stella",
     "prosystem",
@@ -22,26 +22,48 @@ $requiredCores = @(
     "fceumm",
     "snes9x",
     "mupen64plus_next",
-    "mupen64plus",
     "genesis_plus_gx",
     "pcsx_rearmed",
-    "pcsx-rearmed",
     "ppsspp",
     "fbneo",
     "beetle_pce_fast",
-    "mednafen_ngp",
-    "beetle_wswan",
-    "beetle_cygne"
+    "mednafen_ngp"
 )
+
+# Fallbacks para nomenclaturas legadas/alternativas.
+$coreAliases = @{
+    "mupen64plus_next" = @("mupen64plus")
+    "pcsx_rearmed" = @("pcsx-rearmed")
+    "beetle_pce_fast" = @("mednafen_pce_fast")
+}
 
 function Get-CoreNameVariants([string]$CoreName) {
     $variants = @($CoreName, $CoreName.Replace("-", "_"), $CoreName.Replace("_", "-"))
     return $variants | Select-Object -Unique
 }
 
+function Get-CoreLookupNames([string]$CoreName) {
+    $names = New-Object System.Collections.Generic.List[string]
+    $names.Add($CoreName)
+    if ($coreAliases.ContainsKey($CoreName)) {
+        foreach ($alias in $coreAliases[$CoreName]) {
+            $names.Add($alias)
+        }
+    }
+
+    $expanded = New-Object System.Collections.Generic.List[string]
+    foreach ($name in ($names | Select-Object -Unique)) {
+        foreach ($variant in (Get-CoreNameVariants -CoreName $name)) {
+            $expanded.Add($variant)
+        }
+    }
+
+    return $expanded | Select-Object -Unique
+}
+
 function Get-DownloadCandidates([string]$CoreName, [string]$RootUrl, [string]$AbiName) {
     $candidates = New-Object System.Collections.Generic.List[string]
-    foreach ($variant in (Get-CoreNameVariants -CoreName $CoreName)) {
+    foreach ($variant in (Get-CoreLookupNames -CoreName $CoreName)) {
         $candidates.Add("$RootUrl/$AbiName/${variant}_libretro_android.so.zip")
         $candidates.Add("$RootUrl/$AbiName/${variant}_libretro.so.zip")
         $candidates.Add("$RootUrl/$AbiName/${variant}.so.zip")
@@ -60,7 +82,7 @@ function Resolve-SoFromZip([string]$ZipPath, [string]$CoreName, [string]$TempDir
 
     Expand-Archive -Path $ZipPath -DestinationPath $extractDir -Force
 
-    $variants = Get-CoreNameVariants -CoreName $CoreName
+    $variants = Get-CoreLookupNames -CoreName $CoreName
     $candidates = Get-ChildItem -Path $extractDir -Recurse -File -Filter "*.so" -ErrorAction SilentlyContinue
 
     foreach ($variant in $variants) {

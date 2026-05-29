@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +33,10 @@ import com.example.deepmule.domain.model.Game
 @Composable
 fun PlayerScreen(
     game: Game?,
-    onLaunchEmulation: (Game) -> Unit
+    onLaunchEmulation: (Game) -> Unit,
+    isPreparingCore: Boolean = false,
+    coreStatusMessage: String? = null,
+    launchError: String? = null
 ) {
     Box(
         modifier = Modifier
@@ -111,9 +115,36 @@ fun PlayerScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
+                enabled = !isPreparingCore,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5C49FF))
             ) {
-                Text("INICIAR EMULACAO", fontWeight = FontWeight.Bold, color = Color.White)
+                Text(
+                    if (isPreparingCore) "PREPARANDO CORE..." else "INICIAR EMULACAO",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+            if (isPreparingCore) {
+                CircularProgressIndicator(color = Color(0xFFA6A0FF))
+            }
+
+            if (!coreStatusMessage.isNullOrBlank()) {
+                Text(
+                    text = coreStatusMessage,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFFBAB7CE),
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            if (!launchError.isNullOrBlank()) {
+                Text(
+                    text = launchError,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFFFF8A80),
+                    textAlign = TextAlign.Center
+                )
             }
         }
     }

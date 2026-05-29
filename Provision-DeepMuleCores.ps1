@@ -4,6 +4,7 @@ param(
     [string]$AdbPath = "F:\Android\SDK\platform-tools\adb.exe",
     [string]$CorePackDir = "cores-pack",
     [string]$RetroArchDir = "",
+    [string]$DeviceSerial = "",
     [switch]$DryRun
 )
 
@@ -56,10 +57,39 @@ function Get-CoreNameVariants([string]$CoreName) {
     return $variants | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique
 }
 
+# Fallbacks para nomes alternativos de core.
+$coreAliases = @{
+    "mupen64plus_next" = @("mupen64plus_next_gles3", "mupen64plus_next_gles2", "mupen64plus")
+    "mupen64plus_next_gles3" = @("mupen64plus_next_gles2", "mupen64plus_next", "mupen64plus")
+    "pcsx_rearmed" = @("pcsx-rearmed")
+    "mednafen_pce_fast" = @("beetle_pce_fast", "mednafen_pce")
+}
+
+function Get-CoreLookupNames([string]$CoreName) {
+    $names = New-Object System.Collections.Generic.List[string]
+    $names.Add($CoreName)
+    if ($coreAliases.ContainsKey($CoreName)) {
+        foreach ($alias in $coreAliases[$CoreName]) {
+            $names.Add($alias)
+        }
+    }
+
+    $expanded = New-Object System.Collections.Generic.List[string]
+    foreach ($name in ($names | Select-Object -Unique)) {
+        foreach ($variant in (Get-CoreNameVariants -CoreName $name)) {
+            $expanded.Add($variant)
+        }
+    }
+
+    return $expanded | Select-Object -Unique
+}
+
 function Get-CoreCandidateFileNames([string]$CoreName) {
     $result = @()
-    foreach ($variant in (Get-CoreNameVariants -CoreName $CoreName)) {
+    foreach ($variant in (Get-CoreLookupNames -CoreName $CoreName)) {
         $result += "$variant.so"
+        $result += "${variant}_gles3_libretro_android.so"
+        $result += "${variant}_gles2_libretro_android.so"
         $result += "${variant}_libretro_android.so"
         $result += "${variant}_libretro.so"
     }
@@ -91,29 +121,16 @@ function Resolve-CoreSourceFile([hashtable]$FileIndex, [string]$CoreName) {
 
 $coreRoot = Find-CoreRoot -ProjectRootValue $ProjectRoot -CorePackDirValue $CorePackDir -RetroArchDirValue $RetroArchDir
 
-# Lista consolidada para cobrir os 23 sistemas e aliases mais comuns.
+# Lista consolidada sem entradas repetidas.
 $requiredCores = @(
     "stella",
-    "prosystem",
-    "handy",
     "gambatte",
     "mgba",
-    "melonds",
-    "desmume",
-    "citra",
     "fceumm",
     "snes9x",
     "mupen64plus_next",
-    "mupen64plus",
     "genesis_plus_gx",
-    "pcsx_rearmed",
-    "pcsx-rearmed",
-    "ppsspp",
-    "fbneo",
-    "beetle_pce_fast",
-    "mednafen_ngp",
-    "beetle_wswan",
-    "beetle_cygne"
+    "fbneo"
 )
 
 if (-not (Test-Path $coreRoot)) {
@@ -168,24 +185,33 @@ if (-not $deviceList) {
 Write-Host "Dispositivo(s) conectado(s):"
 $deviceList | ForEach-Object { Write-Host " - $($_.Line)" }
 
+# Build adb base args with optional -s serial
+$adbBase = @()
+if (-not [string]::IsNullOrWhiteSpace($DeviceSerial)) {
+    $adbBase = @("-s", $DeviceSerial)
+    Write-Host "Usando dispositivo: $DeviceSerial"
+}
+
 Write-Host "Criando pasta de cores interna do app..."
-& $AdbPath shell "run-as $PackageName mkdir -p files/cores"
+& $AdbPath @adbBase shell "run-as $PackageName mkdir -p files/cores"
 
 foreach ($core in ($coreMap.Keys | Sort-Object)) {
     $sourceFile = $coreMap[$core]
     $tmpPath = "/data/local/tmp/$core.so"
 
     Write-Host "Enviando $core.so para temporario..."
-    & $AdbPath push "$sourceFile" "$tmpPath" | Out-Null
+    $prev = $ErrorActionPreference; $ErrorActionPreference = "SilentlyContinue"
+    $null = & $AdbPath @adbBase push "$sourceFile" "$tmpPath" 2>&1
+    $ErrorActionPreference = $prev
 
     Write-Host "Copiando $core.so para files/cores via run-as..."
-    & $AdbPath shell "run-as $PackageName cp $tmpPath files/cores/$core.so"
-    & $AdbPath shell "run-as $PackageName chmod 600 files/cores/$core.so"
-    & $AdbPath shell "rm -f $tmpPath"
+    & $AdbPath @adbBase shell "run-as $PackageName cp $tmpPath files/cores/$core.so"
+    & $AdbPath @adbBase shell "run-as $PackageName chmod 600 files/cores/$core.so"
+    & $AdbPath @adbBase shell "rm -f $tmpPath"
 }
 
 Write-Host "Verificando cores provisionados no app..."
-& $AdbPath shell "run-as $PackageName ls -l files/cores"
+& $AdbPath @adbBase shell "run-as $PackageName ls -l files/cores"
 
 Write-Host "Provisionamento de cores concluido com sucesso."
 

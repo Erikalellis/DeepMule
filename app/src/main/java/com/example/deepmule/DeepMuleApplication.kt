@@ -8,6 +8,8 @@ import com.example.deepmule.analytics.DeepMuleReporter
 import com.example.deepmule.data.GameDatabase
 import com.example.deepmule.data.GameRepository
 import com.example.deepmule.data.GameScanner
+import com.example.deepmule.data.RomSourceManager
+import com.example.deepmule.data.SystemPresetStore
 import java.util.Locale
 
 class DeepMuleApplication : Application() {
@@ -21,13 +23,16 @@ class DeepMuleApplication : Application() {
         DeepMuleReporter.init(this)
     }
 
-    val database by lazy { GameDatabase.getDatabase(this) }
-    val repository by lazy {
+    internal val database by lazy { GameDatabase.getDatabase(this) }
+    internal val repository by lazy {
         GameRepository(
             database.gameDao(),
             GameScanner(this)
         )
     }
+    internal val romSourceManager by lazy { RomSourceManager(this) }
+    internal val systemPresetStore by lazy { SystemPresetStore(this) }
+    internal val appContainer by lazy { AppContainer.from(this) }
 }
 
 private fun Context.withPtBrLocale(): Context {
@@ -43,4 +48,3 @@ private fun Context.withPtBrLocale(): Context {
 
     return createConfigurationContext(config)
 }
-
