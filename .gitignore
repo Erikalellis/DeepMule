@@ -34,4 +34,19 @@ Thumbs.db
 *.log
 *.hprof
 
+# Dados pesados e pacotes externos
+Roms/
+bios-pack/
+cores-pack/
+retroarch-clover-pack/
+retroarch-device-pack/
+retroarch-pack/assets/
+retroarch-pack/autoconfig/
+retroarch-pack/config/
+retroarch-pack/database/
+retroarch-pack/info/
+app/src/main/assets/bios/
+app/src/main/assets/roms/
+app/src/main/jniLibs/
+
 .fake
